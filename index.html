@@ -169,15 +169,28 @@
             <div>
                 <input type="button" value="00" onclick="display.value += '00' ">
                 <input type="button" value="0" onclick="display.value += '0' ">
-                <input type="button" id="equal" class="equal" value="=" onclick="display.value = eval(display.value)">
+                <input type="button" id="equal" class="equal" value="=" onclick="calculateResult()">
             </div>
         </div>
     </div>
-
+    
+<script>
+function calculateResult() {
+      if (display.value !== '') {
+        try {
+          display.value = eval(display.value);
+        } catch (e) {
+          display.value = "Error";
+        }
+      }
+    }
+</script>
+    
 </body>
 
 
 </html>
+
 
 
 
