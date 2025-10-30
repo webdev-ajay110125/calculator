@@ -4,36 +4,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calculator</title>
+    <title>Responsive Bootstrap Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        body {
+            background-color: #f0f2f5;
         }
 
         .calculator {
-            background-color: black;
+            background-color: #212529;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            max-width: 360px;
+            width: 90%;
+            margin: auto;
         }
 
-        .calculator input {
-            border: 0;
-            outline: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+        #display {
+            font-size: 2rem;
+            text-align: right;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+
+        .btn {
+            flex: 1 1 20%;
+            font-size: 1.5rem;
+            margin: 5px;
+            min-width: 60px;
+            min-height: 60px;
+        }
+
+        .btn-operator {
+            background-color: #ff6f00;
+            color: white;
+        }
+
+        .btn-operator:hover {
+            background-color: #ffa000;
+        }
+
+        .btn-equal {
+            background-color: #0dcaf0;
+            color: white;
+        }
+
+        .btn-equal:hover {
+            background-color: #31d2f2;
+        }
+
+        @media (max-width: 576px) {
+            .btn {
+                font-size: 1.2rem;
+                min-width: 50px;
+                min-height: 50px;
+            }
+
+            #display {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="calculator text-center">
+            <input type="text" id="display" class="form-control" readonly>
+
+            <div class="d-flex flex-wrap justify-content-center">
+                <!-- Row 1 -->
+                <button class="btn btn-danger" onclick="display.value = ''">AC</button>
+                <button class="btn btn-warning" onclick="display.value = display.value.slice(0, -1)">DEL</button>
+                <button class="btn btn-secondary" onclick="display.value += '.'">.</button>
+                <button class="btn btn-operator" onclick="if(display.value) display.value += '/'">/</button>
+
+                <!-- Row 2 -->
+                <button class="btn btn-light" onclick="display.value += '7'">7</button>
+                <button class="btn btn-light" onclick="display.value += '8'">8</button>
+                <button class="btn btn-light" onclick="display.value += '9'">9</button>
+                <button class="btn btn-operator" onclick="if(display.value) display.value += '*'">*</button>
+
+                <!-- Row 3 -->
+                <button class="btn btn-light" onclick="display.value += '4'">4</button>
+                <button class="btn btn-light" onclick="display.value += '5'">5</button>
+                <button class="btn btn-light" onclick="display.value += '6'">6</button>
+                <button class="btn btn-operator" onclick="if(display.value) display.value += '-'">-</button>
+
+                <!-- Row 4 -->
+                <button class="btn btn-light" onclick="display.value += '1'">1</button>
+                <button class="btn btn-light" onclick="display.value += '2'">2</button>
+                <button class="btn btn-light" onclick="display.value += '3'">3</button>
+                <button class="btn btn-operator" onclick="if(display.value) display.value += '+'">+</button>
+
+                <!-- Row 5 -->
+                <button class="btn btn-light" onclick="display.value += '00'">00</button>
+                <button class="btn btn-light" onclick="display.value += '0'">0</button>
+                <button class="btn btn-equal flex-grow-1" onclick="calculateResult()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateResult() {
+            if (display.value !== '') {
+                try {
+                    display.value = eval(display.value);
+                } catch (e) {
+                    display.value = "Error";
+                }
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
             background: transparent;
             color: black;
             background-color: white;
@@ -190,6 +281,7 @@ function calculateResult() {
 
 
 </html>
+
 
 
 
